@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Biblioteca Nutricional</h2>
+
+{% for chave, valor in condicoes.items() %}
+<div class="card">
+<h3>{{ chave.replace("_", " ").title() }}</h3>
+<a href="/condicao/{{ chave }}">
+<button>Ver detalhes</button>
+</a>
+</div>
+{% endfor %}
+
+{% endblock %}

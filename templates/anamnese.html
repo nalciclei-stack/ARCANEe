@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+<h2>Anamnese Nutricional</h2>
+
+<form method="POST">
+<label>Peso (kg)</label>
+<input type="number" name="peso" required>
+
+<label>Altura (cm)</label>
+<input type="number" name="altura" required>
+
+<button type="submit">Calcular</button>
+</form>
+
+</div>
+
+{% endblock %}

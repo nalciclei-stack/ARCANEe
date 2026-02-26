@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card" style="width: 400px; margin-top: 50px;">
+    <h2 style="color: var(--secondary); letter-spacing: 3px;">IDENTIFIQUE-SE</h2>
+    <form action="/login" method="POST">
+        <input type="text" placeholder="USUÁRIO" style="width: 90%; padding: 10px; margin: 10px 0; background: #010a13; border: 1px solid #333; color: white;">
+        <input type="password" placeholder="SENHA" style="width: 90%; padding: 10px; margin: 10px 0; background: #010a13; border: 1px solid #333; color: white;">
+        <br><br>
+        <button type="submit" class="btn-riot" style="width: 100%;">INICIAR SESSÃO</button>
+    </form>
+</div>
+{% endblock %}

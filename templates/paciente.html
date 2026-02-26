@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Pacientes{% endblock %}
+{% block content %}
+
+<div class="card">
+<h2>Selecione sua Condição</h2>
+
+<select id="condicao">
+<option value="">Escolha</option>
+<option value="obesidade">Obesidade</option>
+<option value="diabetes">Diabetes</option>
+<option value="hipertensao">Hipertensão</option>
+<option value="esportiva">Atleta</option>
+<option value="gestante">Gestante</option>
+<option value="idoso">Idoso</option>
+</select>
+
+<button onclick="mostrarResumo()">Ver Recomendações</button>
+</div>
+
+<div class="card" id="resumo" style="display:none;">
+<h3>Resumo de Cuidados</h3>
+<p id="textoResumo"></p>
+</div>
+
+{% endblock %}

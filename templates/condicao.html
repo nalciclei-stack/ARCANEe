@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+<h2>{{ dados.titulo }}</h2>
+
+<h3>Definição</h3>
+<p>{{ dados.definicao }}</p>
+
+<h3>Fisiopatologia</h3>
+<p>{{ dados.fisiopatologia }}</p>
+
+<h3>Diagnóstico</h3>
+<p>{{ dados.diagnostico }}</p>
+
+<h3>Tratamento Nutricional</h3>
+<p>{{ dados.tratamento }}</p>
+
+<h3>Base Científica</h3>
+<p>{{ dados.evidencia }}</p>
+
+</div>
+
+{% endblock %}
