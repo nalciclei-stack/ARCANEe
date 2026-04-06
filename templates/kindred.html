@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="home-container">
+
+<h2>Kindred IA</h2>
+
+<form method="POST">
+<input name="pergunta" placeholder="Ex: Creatina retém líquido?">
+<button>Perguntar</button>
+</form>
+
+{% if resposta %}
+<div class="result-box">
+<p>{{ resposta }}</p>
+</div>
+{% endif %}
+
+</div>
+
+{% endblock %}

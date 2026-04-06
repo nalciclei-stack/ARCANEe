@@ -1,15 +1,80 @@
 {% extends "base.html" %}
+
 {% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<h2>Biblioteca Nutricional</h2>
+<div class="main-wrapper fade-in">
+    <header class="home-header-modern" style="margin-top: 40px;">
+        <span class="badge-beta">Base de Dados Noxus Nutri</span>
+        <h1>BIBLIOTECA <span class="text-gradient">CIENTÍFICA</span></h1>
+        <div class="header-line"></div>
+        <p>Base de Dados de Patologias e Condições Nutricionais</p>
+    </header>
 
-{% for chave, valor in condicoes.items() %}
-<div class="card">
-<h3>{{ chave.replace("_", " ").title() }}</h3>
-<a href="/condicao/{{ chave }}">
-<button>Ver detalhes</button>
-</a>
+    <div class="search-wrapper">
+        <form method="POST" action="/biblioteca" class="search-form">
+            <input type="text" name="busca" placeholder="Filtrar por nome ou sintoma..." value="{{ busca if busca }}" class="fade-in">
+            <button type="submit" class="btn-search-nutri">BUSCAR</button>
+        </form>
+    </div>
+
+    {% for categoria, itens in artigos.items() %}
+    <div class="sessao-biblioteca" style="margin-bottom: 60px;">
+        <h2 class="categoria-titulo">{{ categoria|upper }}</h2>
+        
+        <div class="grid"> 
+            {% for titulo, info in itens.items() %}
+            <div class="card-biblioteca-lol fade-in-card">
+                <div class="card-loader-line"></div>
+                
+                <div class="card-inner">
+                    <div class="icon-box-lol">
+                        <i class="bi bi-shield-plus"></i> 
+                    </div>
+
+                    <h3>{{ titulo }}</h3>
+                    
+                    <div class="conteudo-expansivel">
+                        <div class="conteudo-secao">
+                            <p class="texto-info">{{ info.o_que_e }}</p>
+                        </div>
+
+                        <div class="recom-box-modern">
+                            <div class="recom-header">
+                                <i class="bi bi-lightning-charge-fill"></i>
+                                <span>RECOMENDAÇÕES NUTRICIONAIS</span>
+                            </div>
+                            <p class="texto-recom">{{ info.recomendacoes }}</p>
+                        </div>
+                    </div>
+
+                    <button class="btn-ler-mais" onclick="toggleCard(this)">
+                        <span>LER MAIS</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
+
+<script>
+function toggleCard(btn) {
+    const container = btn.parentElement.querySelector('.conteudo-expansivel');
+    const isExpanded = container.classList.contains('expandido');
+    
+    if (isExpanded) {
+        container.classList.remove('expandido');
+        btn.querySelector('span').innerText = "LER MAIS";
+        btn.querySelector('i').className = "bi bi-chevron-down";
+    } else {
+        container.classList.add('expandido');
+        btn.querySelector('span').innerText = "LER MENOS";
+        btn.querySelector('i').className = "bi bi-chevron-up";
+    }
+}
+</script>
 
 {% endblock %}

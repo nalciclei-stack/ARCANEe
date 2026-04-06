@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard">
+
+<h2>Diagnóstico Nutricional</h2>
+
+<form method="POST">
+
+<input type="number" name="peso" placeholder="Peso (kg)" required>
+
+<input type="number" name="altura" placeholder="Altura (cm)" required>
+
+<select name="atividade">
+
+<option value="baixo">Baixa atividade</option>
+<option value="medio">Atividade moderada</option>
+<option value="alto">Alta atividade</option>
+
+</select>
+
+<button type="submit">Analisar</button>
+
+</form>
+
+{% if resultado %}
+
+<div class="result-box">
+
+<h3>Resultado</h3>
+
+<p>{{ resultado }}</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

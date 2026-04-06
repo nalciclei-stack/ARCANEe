@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="home-container">
+
+<h2>Agendamento de Consulta</h2>
+
+<form method="POST">
+<input name="nome" placeholder="Seu nome">
+<input type="date" name="data">
+<button>Solicitar</button>
+</form>
+
+{% if mensagem %}
+<div class="result-box">
+<p>{{ mensagem }}</p>
+</div>
+{% endif %}
+
+</div>
+
+{% endblock %}

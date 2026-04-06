@@ -1,2 +1,0 @@
-# FAKER GOD NÃO VEM PRO BASIL
-sim

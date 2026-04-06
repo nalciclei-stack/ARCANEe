@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard">
+
+<h2>Assistente IA Nutricional</h2>
+
+<form method="POST">
+
+<input type="text" name="pergunta" placeholder="Pergunte algo sobre nutrição..." required>
+
+<button type="submit">Perguntar</button>
+
+</form>
+
+{% if resposta %}
+
+<div class="result-box">
+
+<h3>Resposta da IA</h3>
+
+<p>{{ resposta }}</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,18 +1,79 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="card">
-<h2>Anamnese Nutricional</h2>
+<div class="container-anamnese">
+    
+    <div class="header-section">
+        <h1>Anamnese <span>Nutricional</span></h1>
+        <p>Insira seus dados para um diagnóstico profissional instantâneo.</p>
+    </div>
 
-<form method="POST">
-<label>Peso (kg)</label>
-<input type="number" name="peso" required>
+    <div class="anamnese-grid">
+        <div class="card">
+            <form method="POST">
+                <div class="input-group">
+                    <label>Peso (kg)</label>
+                    <input type="tel" name="peso" placeholder="Ex: 75.5" required>
+                </div>
 
-<label>Altura (cm)</label>
-<input type="number" name="altura" required>
+                <div class="input-group">
+                    <label>Altura (m ou cm)</label>
+                    <input type="tel" name="altura" placeholder="Ex: 1.75" required>
+                </div>
 
-<button type="submit">Calcular</button>
-</form>
+                <button type="submit" class="btn-primary">
+                    Calcular Diagnóstico
+                </button>
+            </form>
+        </div>
+
+        <div class="card card-result">
+            {% if resultado %}
+                {% if resultado.erro %}
+                    <div class="error-msg">
+                        <p>{{ resultado.erro }}</p>
+                    </div>
+                {% else %}
+                    <div class="imc-display">
+                        <div class="imc-circle">
+                            <span>{{ resultado.imc }}</span>
+                            <small>Seu IMC</small>
+                        </div>
+                    </div>
+
+                    <div class="result-info">
+                        <div class="info-block">
+                            <strong>Classificação</strong>
+                            <p class="status-text">{{ resultado.classificacao }}</p>
+                        </div>
+                        <div class="info-block">
+                            <strong>Perfil de Risco</strong>
+                            <p class="status-text">{{ resultado.risco }}</p>
+                        </div>
+                    </div>
+
+                    <div class="alert-box">
+                        <p>{{ resultado.aviso }}</p>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="empty-state">
+                    <p>Aguardando dados para gerar o diagnóstico...</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="tabela-referencia-visual fade-in">
+        <div class="tabela-header">
+            <h2>Tabela de Referência <span>Completa</span></h2>
+            <p>Localize sua posição visual cruzando peso e altura.</p>
+        </div>
+        
+        <div class="image-container-premium">
+            <img src="{{ url_for('static', filename='img/tabela-imc.png') }}" alt="Tabela IMC Colorida">
+        </div>
+    </div>
 
 </div>
 

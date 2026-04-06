@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard">
+
+<h2>Calculadora de IMC</h2>
+
+<form method="POST">
+
+<input type="number" step="0.1" name="peso" placeholder="Peso (kg)" required>
+
+<input type="number" step="0.1" name="altura" placeholder="Altura (cm)" required>
+
+<button type="submit">Calcular</button>
+
+</form>
+
+{% if resultado %}
+
+<div class="result-box">
+
+<h3>Resultado da Avaliação</h3>
+
+<pre>{{ resultado }}</pre>
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

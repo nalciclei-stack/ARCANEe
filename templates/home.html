@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="home-container">
+
+    <div class="home-header-modern">
+        <div class="header-content fade-in">
+            <h1>Noxus Nutri <span class="text-gradient">BETA</span></h1>
+            <div class="header-line"></div>
+            <p>Sua central de inteligência nutricional. <br> <span>Escolha uma funcionalidade para começar.</span></p>
+        </div>
+    </div>
+
+    <div class="grid">
+
+        <a href="/anamnese" class="card-moderno grad-1">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <path d="M32,10c-8,0-14,6-14,14v4c0,10,6,18,14,18s14-8,14-18v-4C46,16,40,10,32,10z" fill="none" stroke="white" stroke-width="2"/>
+                <path d="M30,38c0,4,2,6,2,6s2-2,2-6" fill="none" stroke="white" stroke-width="2"/>
+                <path d="M22,18l6,4M36,16l6,4" stroke="white" stroke-width="2"/>
+                <path d="M32,46v8M28,50h8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div>
+                <h3>IMC</h3>
+                <p>Descubra seu Índice de Massa Corporal com a "precisão" clínica de Zaun.</p>
+            </div>
+            <span class="card-btn">Acessar Ferramenta</span>
+        </a>
+
+        <a href="/kindred" class="card-moderno grad-2">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30,12c-10,0-18,10-18,20c0,10,8,12,10,20" fill="none" stroke="white" stroke-width="2" stroke-dasharray="3 2"/>
+                <circle cx="24" cy="28" r="3" fill="white"/> <path d="M34,12c10,0,18,10,18,20c0,10-8,12-10,20" fill="none" stroke="white" stroke-width="2"/>
+                <circle cx="40" cy="28" r="3" fill="white"/> <path d="M32,12c0,0-4,4-4,8s4,8,4,8s4-4,4-8S32,12,32,12z" fill="none" stroke="white" stroke-width="2"/>
+                <path d="M32,28v16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div>
+                <h3>Kindred AI</h3>
+                <p>Nunca um sem o outro. Sua assistente para pesquisas e decisões.</p>
+            </div>
+            <span class="card-btn">Falar com a IA</span>
+        </a>
+
+        <a href="/biblioteca" class="card-moderno grad-3">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,48c0-4,4-6,8-6h36v-30h-36c-4,0-8,2-8,6v30z" fill="none" stroke="white" stroke-width="2"/>
+                <path d="M18,42c0,4-4,6-8,6" stroke="white" stroke-width="2"/>
+                <path d="M25,12l-4-6l-4,6M47,12l4-6l4,6" fill="none" stroke="white" stroke-width="2"/>
+                <circle cx="32" cy="24" r="1.5" fill="white"/>
+                <path d="M24,24h4M36,24h4M28,28c0,2,4,2,4,0s4,2,4,0" stroke="white" stroke-width="1.5"/>
+            </svg>
+            <div>
+                <h3>Biblioteca</h3>
+                <p>Sabedoria digna do Livro dos Portais. Artigos e ciência.</p>
+            </div>
+            <span class="card-btn">Explorar Acervo</span>
+        </a>
+
+        <a href="/consulta" class="card-moderno grad-4">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20,10c-5,5-5,15,0,20M44,10c5,5,5,15,0,20" fill="none" stroke="white" stroke-width="2"/>
+                <path d="M32,8v44" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M32,16l3,6h7l-5,4l2,7l-7-4l-7,4l2-7l-5-4h7z" fill="white"/>
+                <path d="M32,8c0-4,4-6,4-6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div>
+                <h3>Consulta</h3>
+                <p>Deixe que a Filha das Estrelas guie seu agendamento e saúde.</p>
+            </div>
+            <span class="card-btn">Agendar Agora</span>
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

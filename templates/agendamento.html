@@ -1,9 +1,28 @@
-{% extends "base.html" %}
-{% block content %}
-<h1 style="color: var(--secondary);">AGENDAMENTOS</h1>
-<div class="card">
-    <p>Escolha a data da sua próxima consulta:</p>
-    <input type="date" style="padding: 10px; background: var(--bg-dark); color: white; border: 1px solid var(--primary);">
-    <button class="btn-riot">CONFIRMAR HORÁRIO</button>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Agendar Consulta - Noxus Nutri</title>
+</head>
+<body>
+    <div style="max-width: 800px; margin: 40px auto; padding: 20px;">
+        <h1 class="text-green">📅 Agendamento Clínico</h1>
+        <p>Conecte-se com nossos especialistas em nutrição esportiva e clínica.</p>
+        
+        <div class="vital-container" style="text-align: left; margin-top: 30px;">
+            <label>Selecione o Profissional</label>
+            <select style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px;">
+                <option>Dr. Ricardo Silva - Nutrição Esportiva</option>
+                <option>Dra. Ana Paula - Emagrecimento e Saúde</option>
+            </select>
+            
+            <label>Data Desejada</label>
+            <input type="date" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ddd;">
+            
+            <button class="btn-noxus-entry" style="width: 100%; background: #1e293b;">Solicitar Disponibilidade via WhatsApp</button>
+        </div>
+        <button class="btn-noxus-entry" onclick="window.location.href='/home'" style="margin-top: 20px; background: #64748b;">Voltar</button>
+    </div>
+</body>
+</html>

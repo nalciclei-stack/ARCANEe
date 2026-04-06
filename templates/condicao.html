@@ -1,23 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="card">
-<h2>{{ dados.titulo }}</h2>
+<div class="page-container">
 
-<h3>Definição</h3>
-<p>{{ dados.definicao }}</p>
+    <div class="content-card">
 
-<h3>Fisiopatologia</h3>
-<p>{{ dados.fisiopatologia }}</p>
+        <h1 class="page-title">
+            {{ nome.capitalize() }}
+        </h1>
 
-<h3>Diagnóstico</h3>
-<p>{{ dados.diagnostico }}</p>
+        <p class="page-subtitle">
+            Informações nutricionais e recomendações gerais
+        </p>
 
-<h3>Tratamento Nutricional</h3>
-<p>{{ dados.tratamento }}</p>
+        <div class="info-grid">
 
-<h3>Base Científica</h3>
-<p>{{ dados.evidencia }}</p>
+            {% for chave, valor in dados.items() %}
+            <div class="info-box">
+                <h3>{{ chave.capitalize() }}</h3>
+                <p>{{ valor }}</p>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
 
 </div>
 

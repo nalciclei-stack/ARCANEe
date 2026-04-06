@@ -1,13 +1,23 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const cards = document.querySelectorAll(".card");
+async function enviarMensagem() {
+    const input = document.getElementById("input-kindred");
+    const chatBox = document.getElementById("chat-box");
 
-    cards.forEach(card => {
-        card.addEventListener("mouseenter", () => {
-            card.style.boxShadow = "0 0 25px #00FFB2";
-        });
+    const msg = input.value.trim();
+    if (!msg) return;
 
-        card.addEventListener("mouseleave", () => {
-            card.style.boxShadow = "none";
-        });
+    chatBox.innerHTML += "<div><b>Você:</b> " + msg + "</div>";
+    input.value = "";
+
+    const response = await fetch("/kindred-chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: msg })
     });
-});
+
+    const data = await response.json();
+
+    chatBox.innerHTML += "<div><b>Kindred:</b> " + data.reply + "</div>";
+    chatBox.scrollTop = chatBox.scrollHeight;
+}

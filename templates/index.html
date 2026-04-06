@@ -1,9 +1,40 @@
-{% extends "base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="card">
-<h2>Plataforma Inteligente de Avaliação Nutricional</h2>
-<p>Realize sua anamnese, visualize sua condição e tenha acesso à biblioteca científica simplificada.</p>
-</div>
+    <title>Noxus Nutri Beta</title>
 
-{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="landing">
+        <div class="landing-box">
+
+            <h1>
+                Sua melhor versão <br>
+                <span>começa aqui.</span>
+            </h1>
+
+            <p>
+                Explore nossa biblioteca científica ou inicie sua anamnese nutricional.
+            </p>
+
+            <div class="landing-actions">
+                <a href="/home" class="btn-main">
+                    Entrar como convidado
+                </a>
+
+                <a href="/biblioteca" class="btn-secondary">
+                    Explorar Biblioteca
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
