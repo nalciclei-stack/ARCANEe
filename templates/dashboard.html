@@ -41,3 +41,21 @@
 </div>
 
 {% endblock %}
+<table>
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Data</th>
+            <th>Objetivo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in consultas %}
+        <tr>
+            <td>{{ c.nome }}</td>
+            <td>{{ c.data }}</td>
+            <td>{{ c.objetivo }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

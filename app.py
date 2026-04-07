@@ -5,52 +5,57 @@ app = Flask(__name__)
 app.secret_key = "noxus_nutri_2026"
 
 # =========================================================
-# BASE DE DADOS COMPLETA (MANTIDA INTEGRALMENTE)
+# BASE DE DADOS COMPLETA E CORRIGIDA (SEM CORTES)
 # =========================================================
 
 ARTIGOS_WIKI = {
     "Patologias Metabólicas": {
         "Obesidade": {
-            "o_que_e": "A obesidade é uma doença crônica caracterizada pelo acúmulo excessivo de gordura corporal...",
-            "recomendacoes": "Adotar alimentação baseada em alimentos in natura...",
+            "o_que_e": "A obesidade é uma doença crônica complexa caracterizada pelo acúmulo excessivo de gordura corporal, resultante de um desequilíbrio persistente entre a ingestão calórica e o gasto energético. É um fator de risco primário para doenças cardiovasculares, diabetes tipo 2 e certas neoplasias.",
+            "recomendacoes": "Adotar alimentação baseada em alimentos in natura, aumentar o consumo de fibras, priorizar proteínas magras e estabelecer uma rotina regular de exercícios físicos monitorados.",
             "cor": "#10b981"
         },
         "Diabetes Mellitus": {
-            "o_que_e": "O diabetes mellitus é uma doença metabólica caracterizada pelo aumento da glicose...",
-            "recomendacoes": "Controlar ingestão de carboidratos, priorizar alimentos de baixo índice glicêmico...",
+            "o_que_e": "O diabetes mellitus é um distúrbio metabólico de etiologia múltipla, caracterizado por hiperglicemia crônica resultante de defeitos na secreção ou na ação da insulina. Pode levar a danos a longo prazo em órgãos como rins, olhos e sistema circulatório.",
+            "recomendacoes": "Controlar rigorosamente a ingestão de carboidratos simples, priorizar alimentos de baixo índice glicêmico (integrais) e monitorar a glicemia capilar conforme orientação médica.",
             "cor": "#059669"
         },
         "Hipertensão Arterial": {
-            "o_que_e": "A hipertensão arterial é uma condição crônica caracterizada pela elevação persistente...",
-            "recomendacoes": "Reduzir consumo de sal, evitar alimentos industrializados...",
+            "o_que_e": "A hipertensão arterial é uma condição clínica multifatorial caracterizada pela elevação sustentada dos níveis pressóricos (≥ 140/90 mmHg). Frequentemente é assintomática, mas aumenta significativamente o risco de infarto e AVC.",
+            "recomendacoes": "Reduzir drasticamente o consumo de sódio (sal), evitar embutidos e ultraprocessados, e aumentar a ingestão de potássio através de frutas e vegetais frescos.",
             "cor": "#047857"
         },
         "Dislipidemias": {
-            "o_que_e": "Alterações nos níveis de lipídios no sangue, como colesterol e triglicerídeos...",
-            "recomendacoes": "Reduzir gorduras saturadas, evitar frituras...",
+            "o_que_e": "As dislipidemias são alterações nos níveis de lipídios circulantes, apresentando elevação do colesterol LDL, triglicerídeos ou redução do HDL. Podem levar à formação de placas de ateroma nas artérias.",
+            "recomendacoes": "Reduzir o consumo de gorduras saturadas e trans, evitar frituras e alimentos gordurosos, e incluir fontes de gorduras insaturadas como azeite de oliva e oleaginosas.",
             "cor": "#065f46"
         }
     },
     "Ciclos da Vida": {
         "Aleitamento Materno": {
-            "o_que_e": "O aleitamento materno é a alimentação do bebê exclusivamente com leite materno...",
-            "recomendacoes": "Manter amamentação exclusiva até 6 meses...",
+            "o_que_e": "O aleitamento materno é a estratégia isolada que mais previne mortes em crianças menores de cinco anos. O leite humano é nutricionalmente completo e contém anticorpos essenciais para a proteção imunológica do lactente.",
+            "recomendacoes": "Manter amamentação exclusiva até os 6 meses de vida, sem oferta de água ou chás, e continuada até os 2 anos ou mais junto à alimentação complementar.",
             "cor": "#10b981"
         },
         "Introdução Alimentar": {
-            "o_que_e": "A introdução alimentar é a fase em que novos alimentos são inseridos...",
-            "recomendacoes": "Oferecer alimentos naturais e variados...",
+            "o_que_e": "A introdução alimentar é a fase de transição iniciada aos 6 meses, onde novos grupos alimentares são inseridos gradualmente. É fundamental para o desenvolvimento do paladar e coordenação motora da criança.",
+            "recomendacoes": "Oferecer alimentos naturais amassados (não liquidificados), variando cores e texturas, respeitando sempre os sinais de saciedade da criança.",
             "cor": "#059669"
         }
     },
     "Carências Nutricionais": {
         "Desnutrição": {
-            "o_que_e": "A desnutrição é caracterizada pela deficiência de energia e nutrientes...",
-            "recomendacoes": "Aumentar densidade calórica da dieta...",
+            "o_que_e": "A desnutrição é um estado patológico causado pela deficiência crônica de energia e nutrientes essenciais, resultando em perda de massa magra, comprometimento do sistema imune e atraso no desenvolvimento.",
+            "recomendacoes": "Aumentar a densidade calórica e proteica da dieta através de fracionamento das refeições e uso de suplementos sob supervisão de nutricionista.",
             "cor": "#10b981"
         }
     }
 }
+
+# =========================================================
+# ARMAZENAMENTO DE CONSULTAS (ADIÇÃO)
+# =========================================================
+DADOS_CONSULTAS = []
 
 # =========================================================
 # ROTAS
@@ -69,7 +74,7 @@ def home():
 def login():
     if request.method == "POST":
         user_name = request.form.get("username")
-        password = request.form.get("password") # Pega a senha do form
+        password = request.form.get("password") 
         
         # Verifica se é o admin ou login via Google (que não manda senha aqui)
         if user_name == "admin" and password == "1234":
@@ -147,12 +152,29 @@ def premium():
 
 @app.route("/consulta", methods=["GET","POST"])
 def consulta():
+    # VERIFICAÇÃO DE LOGIN: Se não houver usuário na sessão, manda para o login
+    if not session.get("user"):
+        return redirect(url_for("login"))
+
     mensagem = None
     if request.method == "POST":
         nome = request.form.get("nome")
         data = request.form.get("data")
+        
+        # ADIÇÃO: Salvando os dados sem alterar a lógica da mensagem
+        DADOS_CONSULTAS.append({"nome": nome, "data": data})
+        
         mensagem = f"✔ Consulta solicitada para {nome} no dia {data}."
     return render_template("consulta.html", mensagem=mensagem)
+
+# =========================================================
+# NOVA ROTA: DASHBOARD DO NUTRICIONISTA (ADIÇÃO)
+# =========================================================
+@app.route("/dashboard_nutri")
+def dashboard_nutri():
+    if session.get("user") == "admin":
+        return render_template("dashboard.html", consultas=DADOS_CONSULTAS)
+    return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.run(debug=True)

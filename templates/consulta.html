@@ -2,21 +2,58 @@
 {% block content %}
 
 <div class="home-container">
+    <div class="home-header">
+        <span class="badge-beta">NOXUS NUTRI BETA </span>
+        <h1>CONSULTA <span>
+        <p>Preencha os parâmetros para que a Kindred processe sua evolução.</p>
+    </div>
 
-<h2>Agendamento de Consulta</h2>
+    <div class="card-result" style="max-width: 650px; margin: 0 auto; border: 2px solid #eef2f6; background: white; padding: 40px; border-radius: 24px;">
+        <form method="POST">
+            <div class="input-group">
+                <label>Nome Completo do Atleta</label>
+                <input name="nome" placeholder="Ex: Alciclei Nascimento" required>
+            </div>
 
-<form method="POST">
-<input name="nome" placeholder="Seu nome">
-<input type="date" name="data">
-<button>Solicitar</button>
-</form>
+            <div class="input-group">
+                <label>WhatsApp / Contato</label>
+                <input name="contato" placeholder="(00) 00000-0000" required>
+            </div>
 
-{% if mensagem %}
-<div class="result-box">
-<p>{{ mensagem }}</p>
-</div>
-{% endif %}
+            <div class="anamnese-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="input-group">
+                    <label>Data Preferencial</label>
+                    <input type="date" name="data" required>
+                </div>
+                <div class="input-group">
+                    <label>Turno</label>
+                    <select name="turno" style="width: 100%; padding: 15px; border: 3px solid #eee; border-radius: 12px; font-weight: 600; font-family: inherit; color: var(--gray);">
+                        <option value="Manhã">Manhã</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noite">Noite</option>
+                    </select>
+                </div>
+            </div>
 
+            <div class="input-group">
+                <label>Objetivo da Jornada</label>
+                <select name="objetivo" style="width: 100%; padding: 15px; border: 3px solid #eee; border-radius: 12px; font-weight: 600; font-family: inherit; color: var(--gray);">
+                    <option value="Emagrecimento">Queima de Gordura 🔥</option>
+                    <option value="Hipertrofia">Ganho de Massa 💪</option>
+                    <option value="Performance">Performance Esportiva ⚡</option>
+                    <option value="Saúde">Saúde Geral 🍎</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-primary" style="margin-top: 10px;">Confirmar Agendamento</button>
+        </form>
+
+        {% if mensagem %}
+        <div class="alert-box" style="margin-top: 25px; border-left: 5px solid var(--primary); background: #f0fdf4;">
+            <p style="color: var(--primary-dark); font-weight: 700; margin: 0;">{{ mensagem }}</p>
+        </div>
+        {% endif %}
+    </div>
 </div>
 
 {% endblock %}

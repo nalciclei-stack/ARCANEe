@@ -63,18 +63,19 @@
 <script>
 function toggleCard(btn) {
     const container = btn.parentElement.querySelector('.conteudo-expansivel');
-    const isExpanded = container.classList.contains('expandido');
     
-    if (isExpanded) {
+    if (container.classList.contains('expandido')) {
         container.classList.remove('expandido');
+        container.style.maxHeight = "160px"; // Altura do estado fechado
         btn.querySelector('span').innerText = "LER MAIS";
         btn.querySelector('i').className = "bi bi-chevron-down";
     } else {
         container.classList.add('expandido');
+        // Calcula a altura total do conteúdo interno para expandir sem erro
+        container.style.maxHeight = container.scrollHeight + "px";
         btn.querySelector('span').innerText = "LER MENOS";
         btn.querySelector('i').className = "bi bi-chevron-up";
     }
 }
 </script>
-
 {% endblock %}

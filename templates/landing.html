@@ -1,42 +1,153 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Noxus Nutri ALPHA</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noxus Nutri Beta - Acesso</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilo Clean: Branco, Verde e Azul */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        
+        body {
+            /* Fundo degradê super suave de verde claro para azul claro */
+            background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
+        /* Caixa Central Branca Estilo Google */
+        .clean-box {
+            background: #ffffff;
+            border: 1px solid #eef2f6;
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            width: 90%;
+            max-width: 420px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo-text {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1f2937; /* Cinza escuro para contraste no branco */
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+        
+        .text-emerald { color: #10b981; } /* Verde Noxus */
+        
+        .badge-beta {
+            font-size: 0.7rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            padding: 4px 10px;
+            border-radius: 50px;
+            vertical-align: middle;
+            margin-left: 8px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            color: #6b7280; /* Cinza claro estilo Google */
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        /* Botão Primário (Verde) */
+        .btn-primary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            background: #10b981;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: 0.3s;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Divisor "OU" */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #9ca3af;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .divider span { padding: 0 15px; }
+
+        /* Botão Secundário (Azul Claro) */
+        .btn-secondary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            background: #ffffff;
+            color: #3b82f6; /* Azul */
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: 0.3s;
+            border: 2px solid #eff6ff; /* Borda azul bem clara */
+        }
+        
+        .btn-secondary:hover {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+        }
+    </style>
+</head>
 <body>
 
-<div class="landing">
+    <div class="clean-box">
+        <h1 class="logo-text">NOXUS <span class="text-emerald">NUTRI</span><span class="badge-beta">BETA</span></h1>
+        <p class="subtitle">Sua central de inteligência nutricional.</p>
 
-    <!-- BOLHAS ANIMADAS -->
-    <div class="bg-bubbles">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <div class="landing-box">
-
-        <h1 class="title">
-            NOXUS
-            <small>NUTRI</small>
-            <span>BETA</span>
-        </h1>
-
-        <p class="subtitle">
-            Plataforma inteligente de nutrição
-        </p>
-
-        <a href="/home" class="btn-main">
-            Entrar
+        <a href="{{ url_for('login') }}" class="btn-primary">
+            <i class="bi bi-person-fill"></i> Entrar com Conta
         </a>
 
-    </div>
+        <div class="divider"><span>OU</span></div>
 
-</div>
+        <a href="{{ url_for('home') }}" class="btn-secondary">
+            <i class="bi bi-box-arrow-in-right"></i> Entrar como Convidado
+        </a>
+    </div>
 
 </body>
 </html>
